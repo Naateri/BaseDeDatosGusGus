@@ -39,7 +39,27 @@ public:
 		if (*r) (*r)->addPlayer(*ply); //Adding at the Ages tree
 	}
 	void remove(Player x){
-		;
+		Nodo <Player> **ply;
+		Players.find(x, ply);
+		CNode<string, Player >** p;
+		CNode<char, Player >** q;
+		CNode<uint, Player>** r;
+		Countries.find(x.Country, p);
+		Positions.find(x.Position, q);
+		Ages.find(x.Age, r); 
+		if (*p) (*p)->removePlayer(*ply);
+		if ( (*p)->players.empty() ){
+			Countries.remove(x.Country);
+		}
+		if (*q) (*q)->removePlayer(*ply);
+		if ( (*q)->players.empty() ){
+			Positions.remove(x.Position);
+		}
+		if (*r) (*r)->removePlayer(*ply);
+		if ( (*r)->players.empty() ){
+			Ages.remove(x.Age);
+		}
+		Players.del(x);
 	}
 	void printByCountry(string country){
 		CNode<string, Player >** p;
@@ -93,7 +113,6 @@ public:
 
 
 int main (int argc, char *argv[]) {
-	//FillList();
 	DataBase DB;
 	DB.FillList();
 	//DB.Players.print();

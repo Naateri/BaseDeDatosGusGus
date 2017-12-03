@@ -50,6 +50,16 @@ struct CNode{
 		players.push_back(player);
 		sortVector< Nodo<M>* >(players);
 	}
+	void removePlayer(Nodo<M>* player){
+		for(int i = 0; i < players.size(); i++)
+		{
+			if(players[i] == player)
+			{
+				players.erase(players.begin() + i);
+				break;
+			}
+		}
+	}
 };
 
 template <class T, class M>

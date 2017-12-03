@@ -72,9 +72,24 @@ struct Player
 };
 
 ostream& operator<< (ostream& out, const Player& A){
+	string pos;
+	switch(A.Position){
+	case 'P':
+		pos = "Portero";
+		break;
+	case 'D':
+		pos = "Defensa";
+		break;
+	case 'A':
+		pos = "Delantero";
+		break;
+	case 'M':
+		pos = "Mediocampista";
+		break;
+	}
 	out << "Apellido: " << A.Surname << endl;
 	out << "Numero: " << A.Number << endl;
-	out << "Posicion: " << A.Position << endl;
+	out << "Posicion: " << pos << endl;
 	out << "Edad: " << A.Age << endl;
 	out << "Pais: " << A.Country << endl;
 	out << endl;

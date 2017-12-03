@@ -76,6 +76,14 @@ public:
 		}
 		aux->next = NULL;
 	};
+	void pop_back(){
+		Nodo <T>**ptr = &head;
+		while ( (*ptr)->next){
+			ptr = &((*ptr)->next);
+		}
+		delete *ptr;
+		*ptr = 0;
+	}
 	void print()
 	{
 		Nodo <T>*temp;

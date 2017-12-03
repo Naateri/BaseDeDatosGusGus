@@ -28,22 +28,17 @@ void FillList(){
 	while( !players.eof() ){
 		getline( players, country, ',' );
 		Temp.Country = country;
-		if (country[0] == '\n'){
-			for(int i = 1; i < country.size(); i++){
-				country[i-1] = country[i];
-			}
-			//country[i] = '\n';
-		}
 		getline(players, surname, ',' );
 		Temp.Position = surname[0];
 		getline(players, surname, ',');
 		Temp.Surname = surname;
 		getline(players, surname, ',');
 		Temp.Age = to_uint(surname);
-		getline(players, surname, ',');
+		getline(players, surname);
 		Temp.Number = to_uint(surname);
 		Players.insert(Temp);
 	}
+	Players.pop_back(); ///xd
 	return;
 }
 

@@ -1,7 +1,42 @@
 #include <iostream>
 #include <vector> 
 #include <string>
+
 using namespace std;
+
+template <class T>
+struct Menor{
+	inline bool operator()(T a, T b){
+		return a<b;
+	}
+};
+
+template<class T>
+class MayorNum{
+public:
+	inline bool operator()(T a , T b){
+		return a.Number > b.Number;
+	}
+};
+
+template<class T>
+struct MenorNum
+{
+	inline bool operator()(T* a , T* b){
+		return a->val.Number < b->val.Number;
+	}
+};
+
+
+template<class T>
+class MenorPais
+{
+public:
+	inline bool operator()(T a , T b){
+		return a.Country < b.Country;
+	}
+};
+
 struct Player
 {
 	unsigned int Number;
@@ -26,41 +61,34 @@ struct Player
 		if (this->Age != A.Age) return 0;
 		return 1;
 	}
-};
-template<class T>
-class Mayor
-{
-public:
-	inline bool operator()(T a , T b){
-		return a.Number > b.Number;
+	bool operator!=(Player A){
+		if (this->Number != A.Number) return 1;
+		if (this->Surname != A.Surname) return 1;
+		if (this->Position != A.Position) return 1;
+		if (this->Country != A.Country) return 1;
+		if (this->Age != A.Age) return 1;
+		return 0;
 	}
 };
-template<class T>
-class Menor
-{
-public:
-	inline bool operator()(T a , T b){
-		return a.Number < b.Number;
-	}
-};
+
 template<class T>
 class Nodo
 {
 public:
 	T val;
-	Nodo <T> *next;
+	Nodo <T> *next, *countryN;
 	Nodo(T val, Nodo<T> *sig)
 	{
 		this->val = val;
 		next = sig;
 	}
 };
-template<class T, class Comp>
+
+template<class T>
 class LinkedList
 {
 public:
 	Nodo <T> *head;
-	Comp cmp;
 	LinkedList()
 	{
 		head = NULL;
@@ -98,7 +126,7 @@ public:
 			cout << endl;
 			temp = temp->next;
 		}
-		cout << endl;
+		//cout << endl;
 	}
 	bool find(T x, Nodo <T>**&ptr)
 	{
@@ -107,11 +135,10 @@ public:
 		{
 			ptr = &((*ptr)->next);
 		}*/
-		while (! *ptr){
+		while ( *ptr != NULL && (*ptr)->val != x){
 			ptr = &((*ptr)->next);
 		}
-		//return *ptr && (*ptr)->val == x;
-		return 0;
+		return *ptr && (*ptr)->val == x;
 	}
 	bool insert(T x)
 	{

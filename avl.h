@@ -43,12 +43,7 @@ struct CNode{
 	}
 	void printList(){
 		for(int i = 0; i < players.size(); i++){
-			cout << "Apellido: " << players.at(i)->val.Surname << endl;
-			cout << "Numero: " << players.at(i)->val.Number << endl;
-			cout << "Posicion: " << players.at(i)->val.Position << endl;
-			cout << "Edad: " << players.at(i)->val.Age << endl;
-			cout << "Pais: " << players.at(i)->val.Country << endl;
-			cout << endl;
+			cout << players.at(i)->val;
 		}
 	}
 	void addPlayer(Nodo<M>* player){

@@ -71,6 +71,16 @@ struct Player
 	}
 };
 
+ostream& operator<< (ostream& out, const Player& A){
+	out << "Apellido: " << A.Surname << endl;
+	out << "Numero: " << A.Number << endl;
+	out << "Posicion: " << A.Position << endl;
+	out << "Edad: " << A.Age << endl;
+	out << "Pais: " << A.Country << endl;
+	out << endl;
+	return out;
+}
+
 template<class T>
 class Nodo
 {
@@ -118,12 +128,7 @@ public:
 		temp = head;
 		while(temp)
 		{
-			cout << "Apellido: " << temp->val.Surname << endl;
-			cout << "Numero: " << temp->val.Number << endl;
-			cout << "Posicion: " << temp->val.Position << endl;
-			cout << "Edad: " << temp->val.Age << endl;
-			cout << "Pais: " << temp->val.Country << endl;
-			cout << endl;
+			cout << temp->val;
 			temp = temp->next;
 		}
 		//cout << endl;
@@ -150,9 +155,10 @@ public:
 		{
 			return 0;
 		}*/
-		Nodo <T>*temp = new Nodo<T>(x, NULL);
+		//Nodo <T>*temp = new Nodo<T>(x, NULL);
+		*ptr = new Nodo<T>(x, *ptr);
 		//temp->next = *ptr;
-		(*ptr) = temp;
+		//(*ptr) = temp;
 	}
 	bool del(T x)
 	{

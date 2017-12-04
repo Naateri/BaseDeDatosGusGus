@@ -10,4 +10,5 @@ La base de datos tiene un funcionamiento simple, tres son las funciones principa
 	datos se mostrarán ordenados por el número de camiseta.
  	-Listado de Jugadores por Rangos de Edades.- Se ingresará la edad máxima y mínima. Los
 	datos se mostrarán ordenados por el número de camiseta.
+	
 Durante toda la ejecucion del programa hay una serie de menus para facilitar el uso de las funcines.

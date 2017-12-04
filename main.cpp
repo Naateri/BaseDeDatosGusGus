@@ -278,13 +278,14 @@ public:
 			{
 				string pais;
 				cout << "Ingrese un pais con la primera letra mayuscula: ";
-				cin >> pais;
+				getline(cin, pais);
+				getline(cin, pais);
 				while(pais[0] > 97)
 				{
 					cout << "ERROR" << endl;
 					cout << "La primera letra tiene que ser mayuscula" << endl;
 					cout << "Ingrese un pais: ";
-					cin >> pais;
+					getline(cin, pais);
 				}
 				printByCountry(pais);
 				cat();

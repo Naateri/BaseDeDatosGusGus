@@ -132,16 +132,18 @@ public:
 		cout << "Posicion: P" << endl;
 		cout << "---------------------------" << endl;
 		cout << "Ingrese la nacionalidad: "; 
-		cin >> pais;
+		getline(cin, pais);
+		getline(cin, pais);
+		//cin >> pais;
 		while(pais[0] > 97)
 		{
 			cout << "ERROR" << endl;
 			cout << "La primera letra tiene que ser mayuscula" << endl;
 			cout << "Ingrese la nacionalidad: ";
-			cin >> pais;
+			getline(cin, pais);
 		}
 		cout << "Ingrese el apellido: "; 
-		cin >> apellido;
+		getline(cin, apellido);
 		cout << "Ingrese la edad: "; 
 		cin >> edad;
 		cout << "Ingrese el numero de camiseta: "; 
@@ -171,16 +173,17 @@ public:
 		cout << "Posicion: P" << endl;
 		cout << "---------------------------" << endl;
 		cout << "Ingrese la nacionalidad: "; 
-		cin >> pais;
+		getline(cin, pais);
+		getline(cin, pais);
 		while(pais[0] > 97)
 		{
 			cout << "ERROR" << endl;
 			cout << "La primera letra tiene que ser mayuscula" << endl;
 			cout << "Ingrese la nacionalidad: ";
-			cin >> pais;
+			getline(cin, pais);
 		}
 		cout << "Ingrese el apellido: "; 
-		cin >> apellido;
+		getline(cin, apellido);
 		cout << "Ingrese la edad: "; 
 		cin >> edad;
 		cout << "Ingrese el numero de camiseta: "; 
@@ -208,7 +211,7 @@ public:
 			cout << "------------------------------------" << endl;
 			pl = crear_jugador();
 		}
-		Players.insert(pl);
+		insert(pl);
 		cout << "------------------------------------" << endl;
 		cout << "JUGADOR CORRECTAMENTE INSERTADO" << endl;
 		cout << "------------------------------------" << endl;
@@ -234,7 +237,7 @@ public:
 			cout << "------------------------------------" << endl;
 			pl = crear_jugador();
 		}
-		Players.del(pl);
+		remove(pl);
 		cout << "------------------------------------" << endl;
 		cout << "JUGADOR CORRECTAMENTE ELIMINADO" << endl;
 		cout << "------------------------------------" << endl;

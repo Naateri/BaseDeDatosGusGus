@@ -110,10 +110,261 @@ public:
 		//Players.pop_back(); ///xd
 		return;
 	}
+		void menu_principal()
+	{
+		cout << "----------------MENU PRINCIPAL----------------" << endl;
+		cout << "Para insertar un jugador nuevo pulse UNO" << endl;
+		cout << "Para eliminar un jugador pulse DOS" << endl;
+		cout << "Para cerrar el programa pulse CERO" << endl;
+		cout << "Si desea imprimir una lista de jugadores pulse TRES para elegir el criterio de insercion" << endl;
+	}
+	Player crear_jugador()
+	{
+		char posicion;
+		string pais, apellido;
+		uint numero, edad;
+		cout << "----------------CREAR UN JUGADOR----------------" << endl;
+		cout << "Siga el ejemplo:" << endl;
+		cout << "Nacionalidad: Argentina" << endl;
+		cout << "Apellido: Romero" << endl;
+		cout << "Edad: 30" << endl;
+		cout << "Numero de camiseta: 1" << endl;
+		cout << "Posicion: P" << endl;
+		cout << "---------------------------" << endl;
+		cout << "Ingrese la nacionalidad: "; 
+		cin >> pais;
+		while(pais[0] > 97)
+		{
+			cout << "ERROR" << endl;
+			cout << "La primera letra tiene que ser mayuscula" << endl;
+			cout << "Ingrese la nacionalidad: ";
+			cin >> pais;
+		}
+		cout << "Ingrese el apellido: "; 
+		cin >> apellido;
+		cout << "Ingrese la edad: "; 
+		cin >> edad;
+		cout << "Ingrese el numero de camiseta: "; 
+		cin >> numero;
+		cout << "Ingrese la posicion siendo A atacante, M medio campista, D defensa y P portero: "; 
+		cin >> posicion;
+		while(posicion != 'A' && posicion != 'M' && posicion != 'D' && posicion != 'P')
+		{
+			cout << "ERROR" << endl;
+			cout << "No se ingreso una posicion valida, preocure que sea mayuscula y una de las validas" << endl;
+			cout << "Ingrese la posicion: ";
+			cin >> posicion;
+		}
+		Player newplayer(numero, apellido, posicion, edad, pais);
+		return newplayer;
+	}
+	Player eliminar_jugador()
+	{
+		char posicion;
+		string pais, apellido;
+		uint numero, edad;
+		cout << "Siga el ejemplo:" << endl;
+		cout << "Nacionalidad: Argentina" << endl;
+		cout << "Apellido: Romero" << endl;
+		cout << "Edad: 30" << endl;
+		cout << "Numero de camiseta: 1" << endl;
+		cout << "Posicion: P" << endl;
+		cout << "---------------------------" << endl;
+		cout << "Ingrese la nacionalidad: "; 
+		cin >> pais;
+		while(pais[0] > 97)
+		{
+			cout << "ERROR" << endl;
+			cout << "La primera letra tiene que ser mayuscula" << endl;
+			cout << "Ingrese la nacionalidad: ";
+			cin >> pais;
+		}
+		cout << "Ingrese el apellido: "; 
+		cin >> apellido;
+		cout << "Ingrese la edad: "; 
+		cin >> edad;
+		cout << "Ingrese el numero de camiseta: "; 
+		cin >> numero;
+		cout << "Ingrese la posicion siendo A atacante, M medio campista, D defensa y P portero: "; 
+		cin >> posicion;
+		while(posicion != 'A' && posicion != 'M' && posicion != 'D' && posicion != 'P')
+		{
+			cout << "ERROR" << endl;
+			cout << "No se ingreso una posicion valida, preocure que sea mayuscula y una de las validas" << endl;
+			cout << "Ingrese la posicion: ";
+			cin >> posicion;
+		}
+		Player newplayer(numero, apellido, posicion, edad, pais);
+		return newplayer;
+	}
+	void menu_insertar()
+	{
+		Nodo <Player> **ply;
+		Player pl = crear_jugador();
+		while(Players.find(pl, ply))
+		{
+			cout << "------------------------------------" << endl;
+			cout << "ESE JUGADOR YA EXISTE CREE UNO NUEVO" << endl;
+			cout << "------------------------------------" << endl;
+			pl = crear_jugador();
+		}
+		Players.insert(pl);
+		cout << "------------------------------------" << endl;
+		cout << "JUGADOR CORRECTAMENTE INSERTADO" << endl;
+		cout << "------------------------------------" << endl;
+		cout << "------------------------------------" << endl;
+		int ex;
+		cout << "Presione 1 para volver al MENU PRINCIPAL" << endl;
+		cout << "------------------------------------" << endl;
+		cin >> ex;
+		while(ex != 1)
+		{
+			cin >> ex;
+		}
+	}
+	void menu_eliminar()
+	{
+		cout << "------------------ELIMINAR JUGADOR------------------" << endl;
+		Nodo <Player> **ply;
+		Player pl = eliminar_jugador();
+		while(!Players.find(pl, ply))
+		{
+			cout << "------------------------------------" << endl;
+			cout << "ESE JUGADOR NO EXISTE ELIjA UNO NUEVO" << endl;
+			cout << "------------------------------------" << endl;
+			pl = crear_jugador();
+		}
+		Players.del(pl);
+		cout << "------------------------------------" << endl;
+		cout << "JUGADOR CORRECTAMENTE ELIMINADO" << endl;
+		cout << "------------------------------------" << endl;
+		cout << "------------------------------------" << endl;
+		int ex;
+		cout << "Presione 1 para volver al MENU PRINCIPAL" << endl;
+		cout << "------------------------------------" << endl;
+		cin >> ex;
+		while(ex != 1)
+		{
+			cin >> ex;
+		}
+	}
+	void cat()
+	{
+		cout << "----------MENU DE CRITERIOS DE LISTADO----------" << endl;
+		cout << "Pulse CINCO para el Listado de los Jugadores en orden en que se ingresaron" << endl;
+		cout << "Pulse SEIS para el Listado de Jugadores por seleccion" << endl;
+		cout << "Pulse SIETE para el Listado de Jugadores por Posicion" << endl;
+		cout << "Pulse OCHO para el Listado de Jugadores por Rangos de Edades.-" << endl;
+		cout << "Pulse NUEVE para regresar al MENU PRINCIPAL" << endl;
+	}
+	void menu_categorias()
+	{
+		int m;
+		cat();
+		cin >> m;
+		while(m != 9)
+		{
+			if(m == 5)
+			{
+				Players.print();
+				cat();
+				cin >> m;
+				continue;
+			}
+			if(m == 6)
+			{
+				string pais;
+				cout << "Ingrese un pais con la primera letra mayuscula: ";
+				cin >> pais;
+				while(pais[0] > 97)
+				{
+					cout << "ERROR" << endl;
+					cout << "La primera letra tiene que ser mayuscula" << endl;
+					cout << "Ingrese un pais: ";
+					cin >> pais;
+				}
+				printByCountry(pais);
+				cat();
+				cin >> m;
+				continue;
+			}
+			if(m == 7)
+			{
+				char posicion;
+				cout << "Ingrese la posicion siendo A atacante, M medio campista, D defensa y P portero: "; 
+				cin >> posicion;
+				while(posicion != 'A' && posicion != 'M' && posicion != 'D' && posicion != 'P')
+				{
+					cout << "ERROR" << endl;
+					cout << "No se ingreso una posicion valida, preocure que sea mayuscula y una de las validas" << endl;
+					cout << "Ingrese la posicion: ";
+					cin >> posicion;
+				}
+				printByPosition(posicion);
+				cat();
+				cin >> m;
+				continue;
+			}
+			if(m == 8)
+			{
+				int min, max;
+				cout << "Ingrese la edad minima: ";
+				cin >> min;
+				cout << "Ingrese la edad maxima: ";
+				cin >> max;
+				printByAgeRange(min, max);
+				cat();
+				cin >> m;
+				continue;
+			}
+			else
+				cin >> m;
+		}
+		system("cls");
+		menu_principal();
+	}
 };
 
 
 int main (int argc, char *argv[]) {
+	int key;
+	bool state = true;
+	
+	DataBase DB;
+	DB.FillList();
+	
+	DB.menu_principal();
+	while(state)
+	{
+		cin >> key;
+		switch (key)
+		{
+		case 0:
+			state = false;
+			break;
+		case 1:
+			system("cls");
+			DB.menu_insertar();
+			system("cls");
+			DB.menu_principal();
+			break;
+		case 2:
+			system("cls");
+			DB.menu_eliminar();
+			system("cls");
+			DB.menu_principal();
+			break;
+		case 3:
+			system("cls");
+			DB.menu_categorias();
+			break;
+		}
+	}
+	return 0;
+}
+
+
+/*int main (int argc, char *argv[]) {
 	DataBase DB;
 	Player Temp;
 	Temp.Age = 15;
@@ -135,5 +386,5 @@ int main (int argc, char *argv[]) {
 	//DB.Ages.printTree(DB.Ages.m_root);
 	DB.printByAgeRange(14, 21);
 	return 0;
-}
+}*/
 

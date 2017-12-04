@@ -48,15 +48,15 @@ public:
 		Positions.find(x.Position, q);
 		Ages.find(x.Age, r); 
 		if (*p) (*p)->removePlayer(*ply);
-		if ( (*p)->players.empty() ){
+		if ( (*p) && (*p)->players.empty() ){
 			Countries.remove(x.Country);
 		}
 		if (*q) (*q)->removePlayer(*ply);
-		if ( (*q)->players.empty() ){
+		if ( (*q) && (*q)->players.empty() ){
 			Positions.remove(x.Position);
 		}
 		if (*r) (*r)->removePlayer(*ply);
-		if ( (*r)->players.empty() ){
+		if ((*r) && (*r)->players.empty() ){
 			Ages.remove(x.Age);
 		}
 		Players.del(x);
@@ -100,13 +100,14 @@ public:
 			Temp.Position = surname[0];
 			getline(players, surname, ',');
 			Temp.Surname = surname;
+			if (surname == "27") break; //no se porque inserta un ultimo jugador en 'blanco'
 			getline(players, surname, ',');
 			Temp.Age = to_uint(surname);
 			getline(players, surname);
 			Temp.Number = to_uint(surname);
 			insert(Temp);
 		}
-		Players.pop_back(); ///xd
+		//Players.pop_back(); ///xd
 		return;
 	}
 };
@@ -114,11 +115,25 @@ public:
 
 int main (int argc, char *argv[]) {
 	DataBase DB;
+	Player Temp;
+	Temp.Age = 15;
+	Temp.Position = 'M';
+	Temp.Country = "Uruguay";
+	Temp.Number = 69;
+	Temp.Surname = "Apellido";
+	DB.insert(Temp);
+	Temp.Age = 16;
+	Temp.Position = 'A';
+	Temp.Number = 99;
+	Temp.Surname = "Apellido2";
+	DB.insert(Temp);
 	DB.FillList();
+	DB.remove(Temp);
 	//DB.Players.print();
-	//DB.printByCountry("Belgica");
+	//DB.printByCountry("Uruguay");
 	//DB.printByPosition('M');
-	DB.printByAgeRange(32, 35);
+	//DB.Ages.printTree(DB.Ages.m_root);
+	DB.printByAgeRange(14, 21);
 	return 0;
 }
 

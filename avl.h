@@ -53,7 +53,7 @@ struct CNode{
 	void removePlayer(Nodo<M>* player){
 		for(int i = 0; i < players.size(); i++)
 		{
-			if(players[i] == player)
+			if(players.at(i) == player)
 			{
 				players.erase(players.begin() + i);
 				break;
@@ -170,9 +170,9 @@ void AVL<T,M,C>::RR(CNode<T, M>** p){
 	gfather->m_nodes[1] = bl;
 	if (m_root == gfather) m_root = father;
 	else {
-		if (RL){
+		if (father->m_x < temp->m_x) temp->m_nodes[0] = father;/*(LR) {/*(RL){
 			temp->m_nodes[0] = father;
-		} else if (LR && father->height == 1) temp->m_nodes[0] = father;
+		} else if (LR && (father->height == 1 || father->height == 0))  temp->m_nodes[0] = father;*/
 		else temp->m_nodes[1] = father;
 	}
 }
@@ -205,10 +205,10 @@ void AVL<T,M,C>::LL(CNode<T, M>** p){
 		m_root = father;
 	}
 	else {
-		if (LR) {
+		if (father->m_x > temp->m_x) temp->m_nodes[1] = father;/*(LR) {/*(LR) {
 			temp->m_nodes[1] = father;
 		}
-		else if (RL && father->height == -1) temp->m_nodes[1] = father;
+		else if (RL && (father->height == -1)) temp->m_nodes[1] = father;*/
 		else temp->m_nodes[0] = father;
 	}
 }
@@ -233,7 +233,7 @@ CNode<T, M>** AVL<T,M,C>::Rep(CNode<T, M>** p){
 		path.push_back(*p);
 	}
 	/*for(p = &(*p)->m_nodes[1]; *p && (*p)->m_nodes[0]; p = &(*p)->m_nodes[0]){ //VisuAlgo like
-	path.push_back(*p);
+		path.push_back(*p);
 	}*/
 	path.push_back(*p);
 	return p;
@@ -363,6 +363,7 @@ bool AVL<T,M,C>::remove(T x){
 	if ((*p)->m_nodes[0] && (*p)->m_nodes[1]){
 		CNode<T, M>** q = Rep(p);
 		(*p)->m_x = (*q)->m_x;
+		(*p)->players = (*q)->players;
 		p = q;
 	}
 	CNode<T, M>* temp = *p;
